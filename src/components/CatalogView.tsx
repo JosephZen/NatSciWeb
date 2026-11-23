@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { Search, Filter, BookOpen, Sparkles, LayoutGrid, ListFilter, Leaf, ExternalLink, Database } from "lucide-react";
 import { SpeciesItem } from "@/lib/species";
+import SpeciesImage from "./SpeciesImage";
 
 interface CatalogViewProps {
   speciesList: SpeciesItem[];
@@ -203,11 +204,13 @@ export default function CatalogView({
               >
                 {/* Top Image Section with Static Plain Image */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-200 border-b border-parchment-300">
-                  <Image
+                  <SpeciesImage
                     src={item.imagePath}
                     alt={item.commonName}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    category={item.category}
+                    commonName={item.commonName}
+                    scientificName={item.scientificName}
+                    className="group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   
@@ -298,11 +301,12 @@ export default function CatalogView({
               >
                 {/* Left Photo Column */}
                 <div className="relative w-full md:w-64 lg:w-80 min-h-[180px] overflow-hidden bg-stone-200 flex-shrink-0">
-                  <Image
+                  <SpeciesImage
                     src={item.imagePath}
                     alt={item.commonName}
-                    fill
-                    className="object-cover"
+                    category={item.category}
+                    commonName={item.commonName}
+                    scientificName={item.scientificName}
                     sizes="320px"
                   />
                   <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-bark-900/85 text-parchment-100 text-[10px] font-mono font-bold uppercase">

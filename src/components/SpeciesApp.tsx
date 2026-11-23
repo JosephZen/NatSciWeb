@@ -18,9 +18,18 @@ export default function SpeciesApp({
 }: SpeciesAppProps) {
   const [isScrapbookOpen, setIsScrapbookOpen] = useState(false);
   const [selectedPageIndex, setSelectedPageIndex] = useState(0);
+  const [startWithCover, setStartWithCover] = useState(false);
 
-  const handleOpenScrapbook = (index: number = 0) => {
+  // When clicking "View in Scrapbook Mode" on a card -> open directly to that page
+  const handleOpenFromCard = (index: number = 0) => {
     setSelectedPageIndex(index);
+    setStartWithCover(false);
+    setIsScrapbookOpen(true);
+  };
+
+  // When clicking floating book button at bottom right -> show book cover first
+  const handleOpenFromFloatingButton = () => {
+    setStartWithCover(true);
     setIsScrapbookOpen(true);
   };
 
@@ -30,19 +39,19 @@ export default function SpeciesApp({
 
   return (
     <main className="relative min-h-screen">
-      {/* Background Animated Rainforest Rain Droplets */}
+      {/* Background Permanent Rainforest Rain Droplets (Toggle Removed) */}
       <RainCanvas />
 
       {/* Main UI 2: Row & Column Catalog View */}
       <CatalogView
         speciesList={initialSpecies}
         dataSource={dataSource}
-        onOpenScrapbook={handleOpenScrapbook}
+        onOpenScrapbook={handleOpenFromCard}
       />
 
-      {/* Floating Book Trigger Button (Bottom-Right) */}
+      {/* Floating Book Trigger Button (Bottom-Right) - Opens to Cover First */}
       <FloatingBookButton
-        onClick={() => handleOpenScrapbook(selectedPageIndex)}
+        onClick={handleOpenFromFloatingButton}
         count={initialSpecies.length}
       />
 
@@ -52,6 +61,7 @@ export default function SpeciesApp({
         onClose={handleCloseScrapbook}
         speciesList={initialSpecies}
         initialIndex={selectedPageIndex}
+        initialShowCover={startWithCover}
       />
     </main>
   );

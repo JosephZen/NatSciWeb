@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { CloudRain, CloudOff } from "lucide-react";
+import React, { useEffect, useRef } from "react";
 
 interface RainDrop {
   x: number;
@@ -21,10 +20,8 @@ interface Ripple {
 
 export default function RainCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [enabled, setEnabled] = useState(true);
 
   useEffect(() => {
-    if (!enabled) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -42,13 +39,13 @@ export default function RainCanvas() {
 
     window.addEventListener("resize", handleResize);
 
-    const maxDrops = 75;
+    const maxDrops = 80;
     const drops: RainDrop[] = Array.from({ length: maxDrops }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      speed: 3 + Math.random() * 5,
-      length: 12 + Math.random() * 18,
-      opacity: 0.15 + Math.random() * 0.25,
+      speed: 3.5 + Math.random() * 5.5,
+      length: 14 + Math.random() * 20,
+      opacity: 0.18 + Math.random() * 0.25,
     }));
 
     const ripples: Ripple[] = [];
@@ -56,44 +53,44 @@ export default function RainCanvas() {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw and update rain drops
-      ctx.lineWidth = 1.2;
+      // Draw and update falling rain streaks
+      ctx.lineWidth = 1.3;
       for (const drop of drops) {
-        ctx.strokeStyle = `rgba(164, 214, 185, ${drop.opacity})`;
+        ctx.strokeStyle = `rgba(168, 220, 192, ${drop.opacity})`;
         ctx.beginPath();
         ctx.moveTo(drop.x, drop.y);
-        ctx.lineTo(drop.x - 1.5, drop.y + drop.length);
+        ctx.lineTo(drop.x - 1.8, drop.y + drop.length);
         ctx.stroke();
 
         drop.y += drop.speed;
-        drop.x -= 0.6; // slight angle imitation of tropical breeze
+        drop.x -= 0.6; // gentle tropical wind angle
 
         if (drop.y > height) {
-          // Trigger a ripple at bottom
-          if (Math.random() > 0.4) {
+          // Trigger water ripple at the bottom
+          if (Math.random() > 0.35) {
             ripples.push({
               x: drop.x,
-              y: height - Math.random() * 20,
+              y: height - Math.random() * 25,
               radius: 1,
-              maxRadius: 10 + Math.random() * 14,
-              opacity: 0.35,
+              maxRadius: 12 + Math.random() * 16,
+              opacity: 0.38,
             });
           }
           drop.y = -drop.length;
-          drop.x = Math.random() * (width + 100);
+          drop.x = Math.random() * (width + 120);
         }
       }
 
-      // Draw and update water ripples
+      // Draw and update gentle water ripples
       for (let i = ripples.length - 1; i >= 0; i--) {
         const r = ripples[i];
-        ctx.strokeStyle = `rgba(180, 225, 200, ${r.opacity})`;
+        ctx.strokeStyle = `rgba(180, 230, 205, ${r.opacity})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.ellipse(r.x, r.y, r.radius, r.radius * 0.4, 0, 0, Math.PI * 2);
+        ctx.ellipse(r.x, r.y, r.radius, r.radius * 0.38, 0, 0, Math.PI * 2);
         ctx.stroke();
 
-        r.radius += 0.4;
+        r.radius += 0.45;
         r.opacity -= 0.008;
 
         if (r.opacity <= 0 || r.radius >= r.maxRadius) {
@@ -110,26 +107,13 @@ export default function RainCanvas() {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [enabled]);
+  }, []);
 
   return (
-    <>
-      {enabled && (
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none fixed inset-0 z-10 opacity-70"
-          aria-hidden="true"
-        />
-      )}
-      <button
-        type="button"
-        onClick={() => setEnabled(!enabled)}
-        className="fixed top-4 right-4 z-40 flex items-center gap-1.5 rounded-full border border-forest-600/40 bg-forest-900/80 px-3 py-1.5 text-xs text-parchment-200 shadow-md backdrop-blur-md transition-all hover:bg-forest-800 hover:text-white"
-        title={enabled ? "Mute Rainforest Rain" : "Enable Rainforest Rain"}
-      >
-        {enabled ? <CloudRain className="h-3.5 w-3.5 text-emerald-400" /> : <CloudOff className="h-3.5 w-3.5 text-parchment-400" />}
-        <span className="font-medium">{enabled ? "Rain On" : "Rain Off"}</span>
-      </button>
-    </>
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-10 opacity-75"
+      aria-hidden="true"
+    />
   );
 }
