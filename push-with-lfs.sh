@@ -48,7 +48,7 @@ echo -e "${YELLOW}⚙️  Configuring Git LFS hooks and tracking...${NC}"
 git lfs install
 
 # Ensure .gitattributes tracks media files
-git lfs track "*.jpg" "*.jpeg" "*.png" "*.webp" "*.pdf" "content-intake/images/*" "public/species/*" 2>/dev/null || true
+git lfs track "*.jpg" "*.jpeg" "*.png" "*.webp" "*.pdf" "*.glb" "content-intake/images/*" "public/species/*" "public/models/*" 2>/dev/null || true
 
 # 5. Stage changes including .gitattributes
 echo -e "${YELLOW}📂 Staging files for Git LFS...${NC}"

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SpeciesItem } from "@/lib/species";
 import SpeciesImage from "./SpeciesImage";
+import WhiteMesh3D from "./WhiteMesh3D";
 
 interface ScrapbookModalProps {
   isOpen: boolean;
@@ -362,6 +363,11 @@ export default function ScrapbookModal({
                 {/* CENTRAL SCRAPBOOK COVER TITLE (Handmade Kraft Plaque) */}
                 <div className="max-w-xl mx-auto space-y-4 relative z-30 px-4 py-6 sm:py-8 bg-[#FAF6EE] text-bark-950 rounded-xl shadow-2xl border-2 border-parchment-400 transform -rotate-0.5">
                   
+                  {/* 3D Spinning Meme Cat perched outside the text border (O-I-A-O-I-A-A) */}
+                  <div className="absolute -top-14 -right-4 sm:-top-18 sm:-right-8 z-40 pointer-events-auto">
+                    <WhiteMesh3D />
+                  </div>
+
                   {/* Washi Tape on Title Plaque Corners */}
                   <div className="absolute -top-3.5 left-8 w-24 h-6 bg-[#C4AC7B]/90 transform -rotate-3 border border-parchment-500 shadow-sm" />
                   <div className="absolute -top-3.5 right-8 w-24 h-6 bg-[#AED581]/90 transform rotate-2 border border-[#9CCC65] shadow-sm" />

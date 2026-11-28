@@ -49,7 +49,7 @@ echo.
 REM 4. Configure Git LFS and tracking
 echo [3/6] Configuring Git LFS hooks and tracking rules...
 git lfs install
-git lfs track "*.jpg" "*.jpeg" "*.png" "*.webp" "*.pdf" "content-intake/images/*" "public/species/*" >nul 2>&1
+git lfs track "*.jpg" "*.jpeg" "*.png" "*.webp" "*.pdf" "*.glb" "content-intake/images/*" "public/species/*" "public/models/*" >nul 2>&1
 echo.
 
 REM 5. Stage files including .gitattributes

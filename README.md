@@ -8,15 +8,17 @@ A full-stack interactive biodiversity website cataloging **60 unique campus plan
 
 - **UI 1: Scrapbook Modal Experience with 3D Book Turning**
   - **Realistic 3D Page Turn Animation**: Next and previous pages rotate in 3D around the central spine (`rotateY: 45deg` to `-45deg`) with dynamic shadow and lighting layers, simulating physical paper bending.
+  - **3D Spinning Meme Cat (O-I-A-O-I-A-A)**: Features `white_mesh.glb` perched outside the title text border on the book cover, spinning continuously like the Maxwell / Oiia Oiia cat meme with bouncy vertical bobbing and interactive click reactions.
   - **Synthesized Paper Sound**: Built-in zero-dependency Web Audio API that generates an authentic, gentle paper rustle and whoosh sound on every page flip (with Mute/Sound On toggle).
-  - **Cover Reveal Mode**: Option to toggle a vintage leather-bound cover with gold embossed lettering that opens into the field notes.
+  - **Cover Reveal Mode**: Option to toggle a vintage leaf-adorned scrapbook cover with pressed foliage (Monstera, Fern, Ginkgo, Palm fronds) that opens into the field notes.
   - **Dog-Ear Interactive Corners**: Folded page corner peel hints on the bottom corners that let you turn pages with a single click.
   - Authentic scrapbook aesthetic (washi tape, polaroid photo frames, stamps, paper textures).
-  - Ambient rainforest rain droplet canvas animation with interactive toggle.
+  - Ambient rainforest rain droplet canvas animation running permanently.
   - Page-by-page flipping (◀ ▶ keyboard arrows, dog-ear corners, or buttons).
   - Can be dismissed anytime with <kbd>ESC</kbd> or the close button.
-  - Floating book icon in the bottom-right corner (`fixed bottom-6 right-6`) with bounce animation that re-opens the scrapbook to your last-viewed page.
-- **UI 2: Catalog View (Row-Column & Grid Layout)**
+  - Floating book icon in the bottom-right corner (`fixed bottom-6 right-6`) with bounce animation that re-opens the scrapbook to the cover first.
+- **UI 2: Catalog View with 3D Roaming Praying Mantis**
+  - **3D Roaming Praying Mantis**: Features `praying_mantis.glb` perched on top of the search border, wandering randomly back and forth with realistic walking bobbing, smooth 180° turns, dynamic aspect-ratio adaptation, and click interaction.
   - Clean nature-themed layout displaying plain static images with standardized fields:
     - **Common Name** (e.g. *Huntsman Spider*)
     - **Scientific Name** (e.g. *Family Sparassidae*)

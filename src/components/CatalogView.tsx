@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Search, Filter, BookOpen, Sparkles, LayoutGrid, ListFilter, Leaf, ExternalLink, Database } from "lucide-react";
 import { SpeciesItem } from "@/lib/species";
 import SpeciesImage from "./SpeciesImage";
+import PrayingMantis3D from "./PrayingMantis3D";
 
 interface CatalogViewProps {
   speciesList: SpeciesItem[];
@@ -78,8 +79,14 @@ export default function CatalogView({
         </div>
       </div>
 
-      {/* Search and Category Filters */}
-      <div className="bg-bark-900/70 border border-bark-700/80 rounded-2xl p-4 sm:p-6 mb-8 backdrop-blur-md shadow-xl">
+      {/* Search and Category Filters Container */}
+      <div className="relative mb-8">
+        {/* 3D Praying Mantis roaming randomly back and forth on top of the search border */}
+        <div className="absolute -top-12 sm:-top-16 inset-x-0 z-20 overflow-visible pointer-events-none">
+          <PrayingMantis3D />
+        </div>
+
+        <div className="bg-bark-900/70 border border-bark-700/80 rounded-2xl p-4 sm:p-6 backdrop-blur-md shadow-xl relative z-10">
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           
           {/* Search Input */}
@@ -160,6 +167,7 @@ export default function CatalogView({
               </button>
             );
           })}
+        </div>
         </div>
       </div>
 
